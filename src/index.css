@@ -16,3 +16,25 @@ body {
     margin-right: auto;
     width: 15%;
 }
+
+/***********************************************************************/
+/* Four columns by default */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+}
+.cards * {
+    text-align: center;
+}
+/* Adjust the number of columns for smaller screens */
+@media (max-width: 2000px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 1000px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
