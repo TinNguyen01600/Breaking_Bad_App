@@ -1,10 +1,12 @@
+import MovieItem from "./MovieItem"
+
 const MovieGrid = ({ isLoading, items}) => {
     return (
         <>
             {isLoading ? <h1>Loading...</h1> : 
             <section className="cards">
                 {items.map(item => (
-                    <h1 key={item.id}>{item.title}</h1>
+                    <MovieItem key={item.id} item={item}/>
                 ))}    
             </section>}
         </>
