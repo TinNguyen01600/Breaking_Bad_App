@@ -4,6 +4,7 @@ import axios from 'axios'
 import Header from './components/UI/Header'
 import MovieGrid from './components/movies/MovieGrid'
 import Search from './components/UI/Search'
+import SortMenu from './components/UI/SortMenu'
 
 function App() {
     const [items, setItems] = useState([])
@@ -42,6 +43,7 @@ function App() {
                 query={query}
                 onChange={handleChange}
             />
+            <SortMenu />
             <MovieGrid
                 isLoading={isLoading}
                 items={results}
