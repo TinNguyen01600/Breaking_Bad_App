@@ -3,6 +3,7 @@ import "./index.css"
 import axios from 'axios'
 import Header from './components/UI/Header'
 import MovieGrid from './components/movies/MovieGrid'
+import Search from './components/UI/Search'
 
 function App() {
     const [items, setItems] = useState([])
@@ -21,6 +22,7 @@ function App() {
     return (
         <>
             <Header />
+            <Search />
             <MovieGrid
                 isLoading={isLoading}
                 items={items}
