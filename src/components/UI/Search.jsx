@@ -1,6 +1,4 @@
-import { useState } from "react"
-
-const Search = () => {
+const Search = ({ query, onChange}) => {
     return (
         <section className="search">
             <form action="">
@@ -8,6 +6,8 @@ const Search = () => {
                     type="text" 
                     className="form-control" 
                     placeholder="Search"
+                    value={query}
+                    onChange={onChange}
                     autoFocus
                 />
             </form>

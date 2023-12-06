@@ -12,20 +12,39 @@ function App() {
     useEffect(() => {
         const fetchItems = async () => {
             const res = await axios(`https://ghibliapi.vercel.app/films`)
-            console.log(res.data)
             setItems(res.data)
             setIsLoading(false)
         }
         fetchItems()
     }, [])
 
+    /*******************************************************************************/
+    // Filter movies base on search bar
+    const [query, setQuery] = useState('')
+    const handleChange = (e) => {
+        setQuery(e.target.value)
+    }
+    const filterMovie = (data, query) => {
+        const q = query.toLowerCase();
+        return data.filter(item =>
+            item.title.split(' ').some(word =>
+                word.toLowerCase().startsWith(q)
+            )
+        );
+    }
+    const results = filterMovie(items, query)
+    /*******************************************************************************/
+
     return (
         <>
             <Header />
-            <Search />
+            <Search
+                query={query}
+                onChange={handleChange}
+            />
             <MovieGrid
                 isLoading={isLoading}
-                items={items}
+                items={results}
             />
         </>
     )
