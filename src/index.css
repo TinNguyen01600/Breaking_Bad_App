@@ -79,17 +79,29 @@ body {
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    border-radius: 8%;
 }
 
 .card-back {
-    font-size: 80px;
-    align-items: center;
-
     transform: rotateY(180deg);
-    background-color: #333;
+    background-color: rgb(37, 150, 190);
     color: white;
+    font-family: 'Lucida Handwriting';
 }
 
+/***********************************************************************/
+/* card back style */
 ul {
     list-style-type: none;
+}
+.card-back ul * {
+    font-size: 60px;
+    align-items: center;
+    padding: 10px 2px 10px 2px;
+}
+.card-back h1 {
+    font-size: 100px;
+    border-bottom: 2px #fff solid;
+    margin: 50px 80px 30px 80px;
+    padding-bottom: 30px;
 }
