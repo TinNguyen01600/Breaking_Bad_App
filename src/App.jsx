@@ -13,6 +13,7 @@ function App() {
     useEffect(() => {
         const fetchItems = async () => {
             const res = await axios(`https://ghibliapi.vercel.app/films`)
+            console.log(res.data)
             setItems(res.data)
             setIsLoading(false)
         }
@@ -79,11 +80,34 @@ function App() {
     }
     const filterMovie = (data, query) => {
         const q = query.toLowerCase();
-        return data.filter(item =>
+        const directorFilter = data.filter(item =>
+            item.director.split(' ').some(word =>
+                word.toLowerCase().startsWith(q)
+            )
+        )
+        const titleFilter = data.filter(item =>
             item.title.split(' ').some(word =>
                 word.toLowerCase().startsWith(q)
             )
         );
+        const producerFilter = data.filter(item =>
+            item.producer.split(' ').some(word =>
+                word.toLowerCase().startsWith(q)
+            )
+        );
+        function concatAndRemoveDuplicates(arr1, arr2, arr3) {
+            // Concatenate the arrays
+            const combinedArray = arr1.concat(arr2, arr3);
+
+            // Remove duplicates
+            const uniqueArray = combinedArray.filter((item, index, array) => {
+                // Check if the current object is the first occurrence in the array
+                return array.findIndex(obj => JSON.stringify(obj) === JSON.stringify(item)) === index;
+            });
+
+            return uniqueArray;
+        }
+        return concatAndRemoveDuplicates(directorFilter, titleFilter, producerFilter)
     }
     results = filterMovie(items, query)
 

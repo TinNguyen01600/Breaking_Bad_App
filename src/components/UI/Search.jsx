@@ -5,7 +5,7 @@ const Search = ({ query, onChange}) => {
                 <input 
                     type="text" 
                     className="form-control" 
-                    placeholder="Search"
+                    placeholder="Search title / director / producer"
                     value={query}
                     onChange={onChange}
                     autoFocus
