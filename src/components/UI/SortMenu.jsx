@@ -4,35 +4,21 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 
-export default function SortMenu() {
+export default function SortMenu({ menuItems }) {
+    const {
+        selectMenuDate, onClickDate,
+        selectMenuScore, onClickScore,
+        selectMenuDuration, onClickDuration,
+        selectMenuAscending, onClickAscending, 
+        selectMenuDescending, onClickDescending
+    } = menuItems
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const open = Boolean(isMenuOpen);
-
-    const [selectMenuDate, setSelectMenuDate] = useState(true);
-    const [selectMenuScore, setSelectMenuScore] = useState(false);
-    const [selectMenuDuration, setSelectMenuDuration] = useState(false);
 
     const handleClick = (event) => {
         setIsMenuOpen(event.currentTarget);
     };
-    const onClickDate = () => {
-        setIsMenuOpen(false);
-        setSelectMenuDate(true)
-        setSelectMenuDuration(false)
-        setSelectMenuScore(false)
-    }
-    const onClickScore = () => {
-        setIsMenuOpen(false);
-        setSelectMenuScore(true)
-        setSelectMenuDuration(false)
-        setSelectMenuDate(false)
-    }
-    const onClickDuration = () => {
-        setIsMenuOpen(false);
-        setSelectMenuDuration(true)
-        setSelectMenuScore(false)
-        setSelectMenuDate(false)
-    }
 
     return (
         <div>
@@ -65,6 +51,18 @@ export default function SortMenu() {
                     {selectMenuDuration ? "•  Duration" : "Duration"}
                 </MenuItem>
                 <Divider />
+                <MenuItem onClick={() => {
+                    onClickAscending()
+                    setIsMenuOpen(false)
+                }}>
+                    {selectMenuAscending ? "•  Ascending" : "Ascending"}
+                </MenuItem>
+                <MenuItem onClick={() => {
+                    onClickDescending()
+                    setIsMenuOpen(false)
+                }}>
+                    {selectMenuDescending ? "•  Descending" : "Descending"}
+                </MenuItem>
             </Menu>
         </div>
     );
