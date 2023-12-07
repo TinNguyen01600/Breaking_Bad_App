@@ -18,22 +18,7 @@ function App() {
         }
         fetchItems()
     }, [])
-
-    /*******************************************************************************/
-    // Filter movies base on search bar
-    const [query, setQuery] = useState('')
-    const handleChange = (e) => {
-        setQuery(e.target.value)
-    }
-    const filterMovie = (data, query) => {
-        const q = query.toLowerCase();
-        return data.filter(item =>
-            item.title.split(' ').some(word =>
-                word.toLowerCase().startsWith(q)
-            )
-        );
-    }
-    const results = filterMovie(items, query)
+    let results = items
 
     /*******************************************************************************/
     // Sort movies with menu
@@ -70,9 +55,37 @@ function App() {
         selectMenuDate, onClickDate,
         selectMenuScore, onClickScore,
         selectMenuDuration, onClickDuration,
-        selectMenuAscending, onClickAscending, 
+        selectMenuAscending, onClickAscending,
         selectMenuDescending, onClickDescending
     }
+    if (selectMenuDate) {
+        if (selectMenuAscending)    results = items.sort(((a, b) => (parseInt(a.release_date) > parseInt(b.release_date)) ? 1 : -1))
+        else results = items.sort(((a, b) => (parseInt(a.release_date) < parseInt(b.release_date)) ? 1 : -1))
+    }
+    if (selectMenuScore) {
+        if (selectMenuAscending)    results = items.sort(((a, b) => (parseInt(a.rt_score) > parseInt(b.rt_score)) ? 1 : -1))
+        else results = items.sort(((a, b) => (parseInt(a.rt_score) < parseInt(b.rt_score)) ? 1 : -1))
+    }
+    if (selectMenuDuration) {
+        if (selectMenuAscending)    results = items.sort(((a, b) => (parseInt(a.running_time) > parseInt(b.running_time)) ? 1 : -1))
+        else results = items.sort(((a, b) => (parseInt(a.running_time) < parseInt(b.running_time)) ? 1 : -1))
+    }
+
+    /*******************************************************************************/
+    // Filter movies base on search bar
+    const [query, setQuery] = useState('')
+    const handleChange = (e) => {
+        setQuery(e.target.value)
+    }
+    const filterMovie = (data, query) => {
+        const q = query.toLowerCase();
+        return data.filter(item =>
+            item.title.split(' ').some(word =>
+                word.toLowerCase().startsWith(q)
+            )
+        );
+    }
+    results = filterMovie(items, query)
 
     return (
         <>
@@ -81,7 +94,7 @@ function App() {
                 query={query}
                 onChange={handleChange}
             />
-            <SortMenu menuItems={menuItems}/>
+            <SortMenu menuItems={menuItems} />
             <MovieGrid
                 isLoading={isLoading}
                 items={results}

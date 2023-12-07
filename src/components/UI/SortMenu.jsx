@@ -9,7 +9,7 @@ export default function SortMenu({ menuItems }) {
         selectMenuDate, onClickDate,
         selectMenuScore, onClickScore,
         selectMenuDuration, onClickDuration,
-        selectMenuAscending, onClickAscending, 
+        selectMenuAscending, onClickAscending,
         selectMenuDescending, onClickDescending
     } = menuItems
 
@@ -41,26 +41,20 @@ export default function SortMenu({ menuItems }) {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={onClickDate}>
+                <MenuItem onClick={() => { setIsMenuOpen(false); onClickDate(); }}>
                     {selectMenuDate ? "•  Year Released" : "Year Released"}
                 </MenuItem>
-                <MenuItem onClick={onClickScore}>
+                <MenuItem onClick={() => { setIsMenuOpen(false); onClickScore(); }}>
                     {selectMenuScore ? "•  Rating Score" : "Rating Score"}
                 </MenuItem>
-                <MenuItem onClick={onClickDuration}>
+                <MenuItem onClick={() => { setIsMenuOpen(false); onClickDuration(); }}>
                     {selectMenuDuration ? "•  Duration" : "Duration"}
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={() => {
-                    onClickAscending()
-                    setIsMenuOpen(false)
-                }}>
+                <MenuItem onClick={() => { setIsMenuOpen(false); onClickAscending() }}>
                     {selectMenuAscending ? "•  Ascending" : "Ascending"}
                 </MenuItem>
-                <MenuItem onClick={() => {
-                    onClickDescending()
-                    setIsMenuOpen(false)
-                }}>
+                <MenuItem onClick={() => { setIsMenuOpen(false); onClickDescending(); }}>
                     {selectMenuDescending ? "•  Descending" : "Descending"}
                 </MenuItem>
             </Menu>
