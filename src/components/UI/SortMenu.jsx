@@ -3,6 +3,8 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
+import { colors } from '@mui/material';
 
 export default function SortMenu({ menuItems }) {
     const {
@@ -29,8 +31,10 @@ export default function SortMenu({ menuItems }) {
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
+                sx={{paddingLeft: '7px', backgroundColor: 'rgb(71, 125, 148)'}}
             >
-                Dashboard
+                <SwapVertIcon />
+                Sort
             </Button>
             <Menu
                 id="basic-menu"

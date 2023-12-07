@@ -121,9 +121,7 @@ ul {
 /***********************************************************************/
 /* search bar */
 .search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-flex;
     margin: 20px;
 }
 
@@ -139,4 +137,12 @@ input {
     width: 200px;
     margin: auto;
     display: block;
+}
+
+/***********************************************************************/
+/* Sort Menu and Search bar container */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

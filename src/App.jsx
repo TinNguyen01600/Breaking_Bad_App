@@ -59,15 +59,15 @@ function App() {
         selectMenuDescending, onClickDescending
     }
     if (selectMenuDate) {
-        if (selectMenuAscending)    results = items.sort(((a, b) => (parseInt(a.release_date) > parseInt(b.release_date)) ? 1 : -1))
+        if (selectMenuAscending) results = items.sort(((a, b) => (parseInt(a.release_date) > parseInt(b.release_date)) ? 1 : -1))
         else results = items.sort(((a, b) => (parseInt(a.release_date) < parseInt(b.release_date)) ? 1 : -1))
     }
     if (selectMenuScore) {
-        if (selectMenuAscending)    results = items.sort(((a, b) => (parseInt(a.rt_score) > parseInt(b.rt_score)) ? 1 : -1))
+        if (selectMenuAscending) results = items.sort(((a, b) => (parseInt(a.rt_score) > parseInt(b.rt_score)) ? 1 : -1))
         else results = items.sort(((a, b) => (parseInt(a.rt_score) < parseInt(b.rt_score)) ? 1 : -1))
     }
     if (selectMenuDuration) {
-        if (selectMenuAscending)    results = items.sort(((a, b) => (parseInt(a.running_time) > parseInt(b.running_time)) ? 1 : -1))
+        if (selectMenuAscending) results = items.sort(((a, b) => (parseInt(a.running_time) > parseInt(b.running_time)) ? 1 : -1))
         else results = items.sort(((a, b) => (parseInt(a.running_time) < parseInt(b.running_time)) ? 1 : -1))
     }
 
@@ -87,14 +87,18 @@ function App() {
     }
     results = filterMovie(items, query)
 
+    /*******************************************************************************/
+
     return (
         <>
             <Header />
-            <Search
-                query={query}
-                onChange={handleChange}
-            />
-            <SortMenu menuItems={menuItems} />
+            <div className='container'>
+                <Search
+                    query={query}
+                    onChange={handleChange}
+                />
+                <SortMenu menuItems={menuItems} />
+            </div>
             <MovieGrid
                 isLoading={isLoading}
                 items={results}
